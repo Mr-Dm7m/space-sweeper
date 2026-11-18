@@ -3,6 +3,22 @@
 A duplicate and junk file cleaner for Windows that fits in a **single 69 KB executable**.
 No setup program, no admin rights, no network code, no telemetry.
 
+## Get it running
+
+Nothing to install, nothing to build, no admin rights.
+
+1. **Code → Download ZIP**, then extract it anywhere (e.g. `C:\Tools\space-sweeper`).
+2. Double-click **`portable\SpaceSweeper.cmd`**.
+
+First launch takes about two seconds: the launcher compiles `src\*.cs` in memory through PowerShell,
+then the window appears. Nothing is written to `Program Files`, the registry, or a startup entry.
+To remove the app later, delete the folder.
+
+> If Windows warns that the script came from the internet, right-click the downloaded ZIP →
+> Properties → **Unblock** before extracting, or run `Get-ChildItem -Recurse | Unblock-File` afterwards.
+
+Requirements: Windows 10 or 11. PowerShell 5.1 and .NET Framework 4.x both ship with the OS, so there is
+nothing to download.
 
 ## Why it exists
 
@@ -36,7 +52,7 @@ double-click a row to reveal it in Explorer, live drive-usage bar.
 * `Windows`, `WinSxS`, `AppData`, `$Recycle.Bin`, junctions, symlinks and offline files are skipped by design.
 * No network code exists in the binary.
 
-## Build
+## Build a standalone exe (optional)
 
 There is no SDK requirement. Windows ships the C# compiler:
 
