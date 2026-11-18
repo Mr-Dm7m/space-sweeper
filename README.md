@@ -7,15 +7,28 @@ No setup program, no admin rights, no network code, no telemetry.
 
 Nothing to install, nothing to build, no admin rights.
 
-1. **Code → Download ZIP**, then extract it anywhere (e.g. `C:\Tools\space-sweeper`).
-2. Double-click **`portable\SpaceSweeper.cmd`**.
+1. **Code → Download ZIP**.
+2. **Right-click the ZIP → Properties → tick `Unblock` → OK — before extracting.**
+   Windows tags every browser download with a "came from another computer" marker, and Smart App
+   Control refuses to launch `.cmd` / `.ps1` files that carry it. This is the single most common way
+   to get stuck.
+3. Extract the ZIP anywhere, e.g. `C:\Tools\space-sweeper`.
+4. Double-click **`portable\SpaceSweeper.cmd`**.
 
 First launch takes about two seconds: the launcher compiles `src\*.cs` in memory through PowerShell,
 then the window appears. Nothing is written to `Program Files`, the registry, or a startup entry.
 To remove the app later, delete the folder.
 
-> If Windows warns that the script came from the internet, right-click the downloaded ZIP →
-> Properties → **Unblock** before extracting, or run `Get-ChildItem -Recurse | Unblock-File` afterwards.
+### If it is still blocked
+
+`An Application Control policy has blocked this file` (Smart App Control) or a SmartScreen prompt means
+the download marker survived extraction. Run this once inside the extracted folder, then launch again:
+
+```powershell
+Get-ChildItem -Recurse -File | Unblock-File
+```
+
+This is a Windows download policy, not an app error — it affects any downloaded `.cmd` or `.ps1`.
 
 Requirements: Windows 10 or 11. PowerShell 5.1 and .NET Framework 4.x both ship with the OS, so there is
 nothing to download.
