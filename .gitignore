@@ -1,0 +1,8 @@
+# build output
+dist/
+release/
+*.zip
+
+# local preview server / screenshot harness output
+shot*.png
+launch.log
